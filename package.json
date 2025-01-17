@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@glidejs/glide": "^3.7.1",
+    "bootstrap": "^5.3.3",
+    "init": "^0.1.2",
+    "leaflet": "^1.9.4"
+  },
+  "devDependencies": {
+    "parcel": "^2.13.3"
+  },
+  "scripts": {
+    "build": "node -v && npm -v && npm clean-install &&  parcel build index.html",
+    "postbuild": "cp -r json dist/ && cp -r images dist/ && cp  -r node_modules dist/"
+  }
+}
