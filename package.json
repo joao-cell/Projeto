@@ -10,6 +10,6 @@
   },
   "scripts": {
     "build": "node -v && npm -v && npm clean-install &&  parcel build index.html",
-    "postbuild": "cp -r json dist/ && cp -r images dist/ && cp  -r node_modules dist/"
+    "postbuild": "cp -r json dist/ && cp -r images dist/"
   }
 }
