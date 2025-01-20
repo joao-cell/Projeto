@@ -11,6 +11,10 @@
             color: red;
             font-size: 0.9rem;
         }
+        .success{
+            color: rgb(62, 182, 62);
+            font-size: 0.9rem;
+        }
         .btn-center {
         display: flex;
         justify-content: center;
@@ -58,7 +62,7 @@
     <!-- Formulario de Presupuesto -->
     <section class="py-5">
         <div class="container">
-            <form id="presupuesto-form">
+            <form id="presupuesto-form" onsubmit="return validarContacto(event);">
                 <!-- Datos de Contacto -->
                 <fieldset class="mb-4">
                     <h2>Datos de Contacto</h2>
@@ -83,7 +87,10 @@
                         <small class="error" id="error-email"></small>
                     </div>
                     <div class="btn-center mb-4">
-                        <button type="submit" class="btn btn-outline-primary btn-md" onclick="validarContacto()">Enviar</button>
+                        <small class="success" id="success"></small>
+                    </div>
+                    <div class="btn-center mb-4">
+                        <button type="submit" class="btn btn-outline-primary btn-md" onClick="validarContacto()">Enviar</button>
                     </div>
                 </fieldset>
             </form>
@@ -153,6 +160,9 @@
     <!-- Validaciones y Cálculo de Presupuesto -->
     <script>
         function validarContacto() {
+
+            event.preventDefault();
+
             const nombre = document.getElementById("nombre").value.trim();
             const apellidos = document.getElementById("apellidos").value.trim();
             const telefono = document.getElementById("telefono").value.trim();
@@ -191,14 +201,16 @@
             } else {
                 document.getElementById("error-email").innerText = "";
             }
-
+            
             if (valido) {
-                alert("¡Formulario válido! Todos los datos son correctos.");
-            }else{
-                alert("¡El formulario no es válido!.");
+                document.getElementById("success").innerText = "¡El formulário es válido!";
+            }else {
+                document.getElementById("success").innerText = "";
             }
             
             return valido;
+
+
             
         }
 
