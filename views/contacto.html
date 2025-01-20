@@ -7,7 +7,6 @@
     <!-- Bootstrap CSS  -->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     
     <style>
@@ -82,9 +81,8 @@
     <!-- Bootstrap-->
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Leaflet JS -->
-    <script src="../node_modules/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    
+
     <!-- Map Initialization Script -->
     <script>
         (function() {
@@ -102,30 +100,6 @@
         L.marker(empresaCoords).addTo(map)
             .bindPopup("<strong>2BeBot</strong><br>Calle Santana, 77 - Sao Vicente, Brasil")
             .openPopup();
-
-        // Función para calcular la ruta desde la ubicación del usuario
-        function calcularRuta() {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const userCoords = [position.coords.latitude, position.coords.longitude];
-
-                    // Agregar un marcador para la ubicación del usuario
-                    L.marker(userCoords).addTo(map)
-                        .bindPopup("<strong>Tu ubicación</strong>")
-                        .openPopup();
-
-                    // Dibujar una línea entre el usuario y la empresa
-                    const polyline = L.polyline([userCoords, empresaCoords], { color: 'blue' }).addTo(map);
-                    map.fitBounds(polyline.getBounds());
-                },
-                () => {
-                    alert("No pudimos acceder a tu ubicación. Por favor, activa la geolocalización.");
-                }
-            );
-        }
-
-        // Calcular la ruta automáticamente al cargar la página
-        window.onload = calcularRuta;
     })();
     </script>
 </body>
