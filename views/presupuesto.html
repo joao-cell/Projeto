@@ -151,7 +151,7 @@
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Validaciones y Cálculo de Presupuesto -->
-    <script defer>
+    <script>
         
         function validarContacto() {
             const nombre = document.getElementById("nombre").value.trim();
@@ -202,6 +202,7 @@
             return valido;
         }
 
+        // Hace que la función validarContacto sea accesible en el alcance global (window)
         window.validarContacto = validarContacto;
 
         (function() {
@@ -210,31 +211,37 @@
             const extrasCheckboxes = document.querySelectorAll(".form-check-input");
             const presupuestoFinal = document.getElementById("presupuesto-final");
 
+            // Función para calcular el presupuesto basado en los valores seleccionados
             function calcularPresupuesto() {
                 const productoPrecio = parseFloat(productoSelect.value);
                 const plazo = parseInt(plazoInput.value);
                 let extrasPrecio = 0;
 
+            // Suma el valor de todas las opciones adicionales seleccionadas
                 extrasCheckboxes.forEach((checkbox) => {
                     if (checkbox.checked) {
                         extrasPrecio += parseFloat(checkbox.value);
                     }
                 });
-
+            
+             // Calcula los descuentos basados en el plazo (5% por cada 6 meses, hasta un máximo del 50%)
                 const numDescontos = Math.floor(plazo / 6);
                 const desconto = numDescontos * 0.05;
                 const descontoFinal = Math.min(desconto, 0.5);
 
+            // Calcula el total considerando el precio base, los extras y el descuento
                 const total = (productoPrecio + extrasPrecio) * (1 - descontoFinal);
                 presupuestoFinal.textContent = `€${total.toFixed(2)}`;
             }
 
+            // Agrega eventos para actualizar el presupuesto siempre que haya cambios en los inputs
             productoSelect.addEventListener("change", calcularPresupuesto);
             plazoInput.addEventListener("input", calcularPresupuesto);
             extrasCheckboxes.forEach((checkbox) =>
                 checkbox.addEventListener("change", calcularPresupuesto)
             );
 
+            // Calcula el presupuesto inicial al cargar el script
             calcularPresupuesto();
         })();
     </script>
