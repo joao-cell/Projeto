@@ -58,7 +58,7 @@
     <!-- Formulario de Presupuesto -->
     <section class="py-5">
         <div class="container">
-            <form id="presupuesto-form" onsubmit="return validarContacto(event);">
+            <form id="presupuesto-form">
                 <!-- Datos de Contacto -->
                 <fieldset class="mb-4">
                     <h2>Datos de Contacto</h2>
@@ -154,8 +154,6 @@
     <script>
         
         function validarContacto() {
-
-            
             const nombre = document.getElementById("nombre").value.trim();
             const apellidos = document.getElementById("apellidos").value.trim();
             const telefono = document.getElementById("telefono").value.trim();
@@ -198,7 +196,7 @@
             if (valido) {
                alert("¡El formulário es válido!")
             }else{
-               alert("¡El formulário no es válido!")
+                alert("¡El formulário no es válido!")
             }
             
             return valido;
