@@ -151,7 +151,7 @@
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Validaciones y Cálculo de Presupuesto -->
-    <script>
+    <script defer>
         
         function validarContacto() {
             const nombre = document.getElementById("nombre").value.trim();
@@ -201,6 +201,8 @@
             
             return valido;
         }
+
+        window.validarContacto = validarContacto;
 
         (function() {
             const productoSelect = document.getElementById("producto");
